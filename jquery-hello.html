@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello World - jQuery Version</title>
+	<script type="text/javascript" src="libs/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		var name = $('#name');
+		var hello = $ ('#hello');
+		var helloBtn = $('#helloBtn');
+
+		name.on('keyup',function() {
+			hello.text('Hello '+name.val());
+		});
+
+		helloBtn.on('click',function() {
+			hello.text('Hello Angular');
+		});
+	})
+	</script>
+</head>
+<body>
+	<input id="name" type="text">
+	<button id="helloBtn" type="button">Angular에게 인사해요</button>
+	<h2 id="hello">Hello</h2>
+</body>
+</html>

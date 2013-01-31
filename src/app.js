@@ -10,8 +10,17 @@ function mainCtrl ($scope) {
 	};
 
 	$scope.insert = function() {
-		if($scope.userList !== undefined){
+		if($scope.userList !== undefined 
+			&& $scope.userList[$scope.userList.length-1].name !== undefined){
 			$scope.userList.push({});
 		}
+	};
+
+	$scope.edit = function(user) {
+		user.edit = (user.edit) ? false : true;
+	};
+
+	$scope.del = function(index) {
+		$scope.userList.splice(index, 1);
 	};
 }

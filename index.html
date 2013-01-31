@@ -47,16 +47,19 @@
 					<tbody>
 						<tr ng-repeat="user in userList">
 							<td>{{$index}}</td>
-							<td><input type="text" ng-model="user.name"></td>
-							<td><input type="email" ng-model="user.email"></td>
-							<td><input type="date" ng-model="user.date"></td>
+							<td><input type="text" ng-model="user.name" ng-disabled="!user.edit"></td>
+							<td><input type="email" ng-model="user.email" ng-disabled="!user.edit"></td>
+							<td><input type="date" ng-model="user.regDate" ng-disabled="!user.edit"></td>
 							<td class="center">
-								<button class="btn btn-danger" type="button">
+								<button class="btn btn-danger" type="button" ng-show="!user.edit" ng-click="edit(user)">
 									<i class='icon-white icon-pencil'></i>
+								</button>
+								<button class="btn btn-info" ng-show="user.edit" type="button" ng-click="edit(user)">
+									<i class='icon-white icon-ok'></i>
 								</button>
 							</td>
 							<td class="center">
-								<button class="btn btn-danger" type="button">
+								<button class="btn btn-danger" ng-click="del($index)" type="button">
 									<i class='icon-white icon-trash'></i>
 								</button>
 							</td>

@@ -8,7 +8,8 @@
 
 	<script type="text/javascript" src="libs/jquery-1.9.0.min.js"></script>
 	<script type="text/javascript" src="libs/bootstrap.min.js"></script>
-	<script type="text/javascript" src="libs/angular-1.0.4/angular.min.js"></script>
+	<script type="text/javascript" src="libs/angular-1.0.4/angular.js"></script>
+	<script type="text/javascript" src="libs/angular-1.0.4/angular-resource.js"></script>
 
 	<script type="text/javascript" src="src/app.js"></script>
 </head>
@@ -18,7 +19,7 @@
 			<div class='span12'>
 				<div class='form-horizontal centerOnPage' style="margin-left: -203px;">
 					<ul class="input-append">
-						<input type="text" placeholder="이름" size="16" >
+						<input type="text" placeholder="이름" size="16" ng-model="searchName">
 						<button class="btn btn-info box" type="button" ng-click="search()">
 							<i class='icon-white icon-search'></i>
 						</button>

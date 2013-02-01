@@ -50,7 +50,9 @@ angular.module('UserMnge', ['ngResource'])
 			if(user instanceof UserResource){
 				user.$update();
 			}else {
-				new UserResource(user).$save();
+				new UserResource(user).$save(function(u) {
+					$scope.userList[$scope.userList.length-1] = u;
+				});
 			}
 		}
 	};
@@ -59,10 +61,12 @@ angular.module('UserMnge', ['ngResource'])
 		var user = $scope.userList[index];
 		
 		if(user instanceof UserResource){
-			user.$remove();
+			user.$remove(function() {
+				$scope.userList.splice(index, 1);
+			});
+		}else{
+			$scope.userList.splice(index, 1);
 		}
-		
-		$scope.userList.splice(index, 1);
 	};
 
 })
@@ -75,12 +79,12 @@ angular.module('UserMnge', ['ngResource'])
 		update : {method:'PUT'}
 	});
 
-	User.prototype.$remove = function(){
-		User.remove({id: this._id.$oid});
+	User.prototype.$remove = function(s_callback){
+		User.remove({id: this._id.$oid},{},s_callback);
 	};
 
-	User.prototype.$update = function() {
-		return User.update({id: this._id.$oid},angular.extend({},this,{_id: undefined }));
+	User.prototype.$update = function(s_callback) {
+		return User.update({id: this._id.$oid},angular.extend({},this,{_id: undefined }),s_callback);
 	};
 
 	return User;

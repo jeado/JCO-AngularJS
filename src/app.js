@@ -27,10 +27,9 @@ angular.module('UserMnge', ['ngResource'])
 	// 	{ name : "고재도3", email : "haibane84@gmail.com", regDate : "2013-01-20" }
 	// ];
 
-	$scope.search = function() {
-		var searchName = ($scope.searchName === "") ? undefined : $scope.searchName;
-		var query=JSON.stringify({ name : searchName });
-
+	$scope.search = function(searchName) {
+		var query = JSON.stringify((searchName === "") ? null : { name : searchName });
+		
 		$scope.userList = UserResource.query({q : query});
 	};
 
